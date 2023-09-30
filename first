@@ -1,0 +1,60 @@
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print("hello,yue")
+# Ask the user for the radius of the circle
+radius = float(input("Enter the radius of the circle: "))
+
+# Calculate the area of the circle
+area = 3.14159 * (radius ** 2)
+
+# Print the area
+print("The area of the circle is:", area)
+# Ask the user for the length and width of the rectangle
+length = float(input("Enter the length of the rectangle: "))
+width = float(input("Enter the width of the rectangle: "))
+
+# Calculate the area of the rectangle
+area = length * width
+
+# Calculate the perimeter of the rectangle
+perimeter = 2 * (length + width)
+
+# Print the area and perimeter
+print("The area of the rectangle is:", area)
+print("The perimeter of the rectangle is:", perimeter)
+# Ask the user for three integer numbers
+num1 = int(input("Enter the first integer number: "))
+num2 = int(input("Enter the second integer number: "))
+num3 = int(input("Enter the third integer number: "))
+
+# Calculate the sum of the numbers
+sum_of_numbers = num1 + num2 + num3
+
+# Calculate the product of the numbers
+product_of_numbers = num1 * num2 * num3
+
+# Calculate the average of the numbers
+average_of_numbers = sum_of_numbers / 3
+
+# Print the sum, product, and average
+print("The sum of the numbers is:", sum_of_numbers)
+print("The product of the numbers is:", product_of_numbers)
+print("The average of the numbers is:", average_of_numbers)
+# Ask the user for the mass in medieval units
+talents = float(input("Enter the number of talents: "))
+pounds = float(input("Enter the number of pounds: "))
+lots = float(input("Enter the number of lots: "))
+
+# Define conversion factors
+talent_to_pound = 20
+pound_to_lot = 32
+lot_to_grams = 13.3
+
+# Convert to grams
+grams = (talents * talent_to_pound + pounds) * pound_to_lot * lot_to_grams
+
+# Convert to kilograms and remaining grams
+kilograms = int(grams // 1000)
+remaining_grams = grams % 1000
+
+# Print the result
+print("The mass is equivalent to", kilograms, "kilograms and", remaining_grams, "grams.")
