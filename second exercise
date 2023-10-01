@@ -1,0 +1,123 @@
+# Get the length of the zander from the user
+zander_length = float(input("Enter the length of the zander in centimeters: "))
+
+# Define the size limit
+size_limit = 42
+
+# Check if the zander meets the size limit
+if zander_length >= size_limit:
+    print("Congratulations! You can keep the zander.")
+else:
+    # Calculate how many centimeters below the size limit the zander is
+    centimeters_below_limit = size_limit - zander_length
+    print(f"The zander is {centimeters_below_limit:.2f} centimeters below the size limit.")
+    print("Please release the zander back into the lake.")
+
+
+# Prompt the user to enter the cabin class
+cabin_class = input("Enter the cabin class (LUX, A, B, or C): ")
+
+# Check the cabin class and provide a description
+if cabin_class == "LUX":
+    print("You have a upper-deck cabin with a balcony.")
+elif cabin_class == "A":
+    print("You have a cabin above the car deck, equipped with a window.")
+elif cabin_class == "B":
+    print("You have a windowless cabin above the car deck.")
+elif cabin_class == "C":
+    print("You have a windowless cabin below the car deck.")
+else:
+    print("Error: Invalid cabin class. Please enter LUX, A, B, or C.")
+
+
+# Prompt the user for biological gender and hemoglobin value
+gender = input("Enter your biological gender (male/female): ")
+hemoglobin_value = float(input("Enter your hemoglobin value (g/l): "))
+
+# Define normal hemoglobin ranges
+normal_ranges = {
+    "male": (134, 167),
+    "female": (117, 155)
+}
+
+# Check if the gender is valid
+if gender.lower() not in normal_ranges:
+    print("Invalid gender input. Please enter 'male' or 'female'.")
+else:
+    # Get the normal range for the specified gender
+    min_range, max_range = normal_ranges[gender.lower()]
+
+    # Check the hemoglobin value and provide feedback
+    if hemoglobin_value < min_range:
+        print(f"Your hemoglobin value is low. Normal range for {gender} is {min_range}-{max_range} g/l.")
+    elif hemoglobin_value >= min_range and hemoglobin_value <= max_range:
+        print(f"Your hemoglobin value is normal. Normal range for {gender} is {min_range}-{max_range} g/l.")
+    else:
+        print(f"Your hemoglobin value is high. Normal range for {gender} is {min_range}-{max_range} g/l.")
+
+
+# Prompt the user to enter a year
+year = int(input("Enter a year: "))
+
+# Check if the year is a leap year
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print(f"{year} is a leap year.")
+else:
+    print(f"{year} is not a leap year.")
+
+
+# Initialize a variable to start from 1
+number = 1
+
+# Use a while loop to iterate through the range
+while number <= 1000:
+    # Check if the number is divisible by three
+    if number % 3 == 0:
+        print(number)
+    # Increment the number by 1 for the next iteration
+    number += 1
+
+# Define the conversion factor from inches to centimeters
+INCH_TO_CM = 2.54
+
+while True:
+    # Prompt the user to enter a length in inches
+    inches = float(input("Enter a length in inches (or a negative value to quit): "))
+
+    # Check if the user entered a negative value to quit
+    if inches < 0:
+        print("Program ended.")
+        break
+
+    # Convert inches to centimeters and display the result
+    centimeters = inches * INCH_TO_CM
+    print(f"{inches} inches is equal to {centimeters:.2f} centimeters.")
+
+
+import random
+
+# Generate a random number between 1 and 10
+random_number = random.randint(1, 10)
+
+# Initialize a variable to keep track of the user's guess
+user_guess = 0
+
+# Main game loop
+while user_guess != random_number:
+    try:
+        # Prompt the user for a guess
+        user_guess = int(input("Guess the number between 1 and 10: "))
+
+        # Check the user's guess
+        if user_guess < random_number:
+            print("Too low! Try again.")
+        elif user_guess > random_number:
+            print("Too high! Try again.")
+        else:
+            print("Correct! You guessed the number.")
+            break  # Exit the loop when the guess is correct
+
+    except ValueError:
+        print("Invalid input. Please enter a valid number between 1 and 10.")
+
+# End of the game
