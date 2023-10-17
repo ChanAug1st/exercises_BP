@@ -1,1 +1,129 @@
+# Define the correct username and password
+correct_username = "python"
+correct_password = "rules"
+
+# Initialize the number of login attempts
+attempts = 0
+
+# Loop until either the user enters the correct credentials or reaches 5 failed attempts
+while attempts < 5:
+    # Ask the user for their username and password
+    username = input("Enter your username: ")
+    password = input("Enter your password: ")
+
+    # Check if the entered credentials are correct
+    if username == correct_username and password == correct_password:
+        print("Welcome")
+        break
+    else:
+        print("Incorrect username or password. Please try again.")
+        attempts += 1
+
+# After the loop, check if the user reached the maximum number of failed attempts
+if attempts == 5:
+    print("Access denied")
+
+
+
+import random
+
+# Ask the user for the number of dice to roll
+num_dice = int(input("How many dice do you want to roll? "))
+
+# Initialize a variable to store the sum of the rolled numbers
+total_sum = 0
+
+# Roll the dice and calculate the sum
+for _ in range(num_dice):
+    # Roll a single die (assuming a standard 6-sided die)
+    rolled_number = random.randint(1, 6)
+    total_sum += rolled_number
+
+    # Print the result of each roll
+    print(f"You rolled a {rolled_number}")
+
+# Print the total sum of the rolled numbers
+print(f"The total sum of the rolled numbers is: {total_sum}")
+
+
+
+# Initialize an empty list to store the numbers
+numbers = []
+
+# Continue to prompt the user for input until an empty string is entered
+while True:
+    user_input = input("Enter a number (or press Enter to quit): ")
+
+    # Check if the user wants to quit (empty input)
+    if user_input == "":
+        break
+
+    # Attempt to convert the input to a float (assuming numeric input)
+    try:
+        number = float(user_input)
+        numbers.append(number)
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+
+# Check if there are any numbers entered
+if not numbers:
+    print("No numbers entered.")
+else:
+    # Sort the list in descending order and print the five greatest numbers
+    numbers.sort(reverse=True)
+    print("The five greatest numbers (in descending order) are:")
+    for i in range(min(5, len(numbers))):
+        print(numbers[i])
+
+
+
+# Initialize an empty list to store the city names
+cities = []
+
+# Use a for loop to read the names of five cities
+for i in range(5):
+    city_name = input(f"Enter the name of city #{i + 1}: ")
+    cities.append(city_name)
+
+# Print the city names one by one in the order they were entered
+print("City Names:")
+for city in cities:
+    print(city)
+
+
+
+import random
+
+# Define a function to roll a 6-sided dice and return the result
+def roll_dice():
+    return random.randint(1, 6)
+
+# Main program to roll the dice until a 6 is rolled
+while True:
+    result = roll_dice()  # Call the roll_dice function
+    print(f"You rolled a {result}")
+    
+    if result == 6:
+        print("You rolled a 6. Exiting.")
+        break
+
+
+
+# Define a function to convert American gallons to liters
+def convert_gallons_to_liters(gallons):
+    liters = gallons * 3.78541
+    return liters
+
+# Main program
+while True:
+    # Ask the user for a volume in American gallons
+    gallons = float(input("Enter a volume in American gallons (or a negative value to exit): "))
+    
+    if gallons < 0:
+        print("Exiting program.")
+        break
+
+    # Use the conversion function and print the result
+    liters = convert_gallons_to_liters(gallons)
+    print(f"{gallons} gallons is equal to {liters} liters.")
 
