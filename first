@@ -50,7 +50,7 @@ pound_to_lot = 32
 lot_to_grams = 13.3
 
 # Convert to grams
-grams = (talents * talent_to_pound + pounds) * pound_to_lot * lot_to_grams
+grams = ((talents * talent_to_pound + pounds) * pound_to_lot + lots) * lot_to_grams
 
 # Convert to kilograms and remaining grams
 kilograms = int(grams // 1000)
