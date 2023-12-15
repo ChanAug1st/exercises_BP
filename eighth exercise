@@ -1,0 +1,93 @@
+import requests
+
+def kelvin_to_celsius(kelvin):
+    return kelvin - 273.15
+
+def get_weather(api_key, city_name):
+    base_url = "http://api.openweathermap.org/data/2.5/weather"
+    params = {
+        'q': city_name,
+        'appid': api_key
+    }
+
+    try:
+        response = requests.get(base_url, params=params)
+        data = response.json()
+
+        if response.status_code == 200:
+            weather_description = data['weather'][0]['description']
+            temperature_kelvin = data['main']['temp']
+            temperature_celsius = kelvin_to_celsius(temperature_kelvin)
+
+            print(f"Weather in {city_name}: {weather_description}")
+            print(f"Temperature: {temperature_celsius:.2f} °C")
+        else:
+            print(f"Error: {data['message']}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+if __name__ == "__main__":
+    api_key = "33557a20699bee714ba"  # Replace with your API key
+    city_name = input("Enter the name of the municipality: ")
+
+    get_weather(api_key, city_name)
+######
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
+
+def get_coordinates(icao_code):
+    geolocator = Nominatim(user_agent="airport_distance_calculator")
+    location = geolocator.geocode(icao_code)
+    
+    if location:
+        return location.latitude, location.longitude
+    else:
+        print(f"Error: Unable to fetch coordinates for {icao_code}")
+        return None
+
+def calculate_distance(icao_code1, icao_code2):
+    coordinates1 = get_coordinates(icao_code1)
+    coordinates2 = get_coordinates(icao_code2)
+
+    if coordinates1 and coordinates2:
+        distance = geodesic(coordinates1, coordinates2).kilometers
+        return distance
+    else:
+        return None
+
+if __name__ == "__main__":
+    icao_code1 = input("Enter the ICAO code of the first airport: ").upper()
+    icao_code2 = input("Enter the ICAO code of the second airport: ").upper()
+
+    distance = calculate_distance(icao_code1, icao_code2)
+
+    if distance is not None:
+        print(f"The distance between {icao_code1} and {icao_code2} is approximately {distance:.2f} kilometers.")
+#######
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+# Airport database (replace with your actual data)
+airport_data = {
+    "EFHK": {"Name": "Helsinki-Vantaa Airport", "Location": "Helsinki"},
+    "EGLL": {"Name": "Heathrow Airport", "Location": "London"},
+    # Add more airports as needed
+}
+
+@app.route('/airport/<icao_code>', methods=['GET'])
+def get_airport_info(icao_code):
+    icao_code = icao_code.upper()
+
+    if icao_code in airport_data:
+        airport_info = {
+            "ICAO": icao_code,
+            "Name": airport_data[icao_code]["Name"],
+            "Location": airport_data[icao_code]["Location"]
+        }
+        return jsonify(airport_info)
+    else:
+        return jsonify({"error": "Airport not found"}), 404
+
+if __name__ == '__main__':
+    app.run(debug=True)
