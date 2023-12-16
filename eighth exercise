@@ -38,7 +38,6 @@ from geopy.distance import geodesic
 airport_data = {
     '00KS': (38.72779846191406, -94.93049621582031),
     '00KY': (37.409400939941406, -84.61969757080078),
-    # Add more airports as needed
 }
 
 def get_airport_coordinates(icao_code):
