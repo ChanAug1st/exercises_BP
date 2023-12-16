@@ -27,7 +27,7 @@ def get_weather(api_key, city_name):
         print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    api_key = "33557a20699bee714ba"  # Replace with your API key
+    api_key = "33557a20699bee714ba" 
     city_name = input("Enter the name of the municipality: ")
 
     get_weather(api_key, city_name)
@@ -68,11 +68,10 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-# Airport database (replace with your actual data)
+# Airport database 
 airport_data = {
     "EFHK": {"Name": "Helsinki-Vantaa Airport", "Location": "Helsinki"},
     "EGLL": {"Name": "Heathrow Airport", "Location": "London"},
-    # Add more airports as needed
 }
 
 @app.route('/airport/<icao_code>', methods=['GET'])
